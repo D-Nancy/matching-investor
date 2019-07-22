@@ -13,14 +13,14 @@ jobs:
             echo "Yarn v$(yarn --version)"
       - restore_cache:
           keys:
-            - wallhaus-app-v1-{{ .Branch }}-{{ checksum "yarn.lock" }}
-            - wallhaus-app-v1-{{ .Branch }}-
-            - wallhaus-app-v1-
+            - nuxt-template-v1-{{ .Branch }}-{{ checksum "yarn.lock" }}
+            - nuxt-template-v1-{{ .Branch }}-
+            - nuxt-template-v1-
       - run:
           name: Install dependencies
           command: yarn install
       - save_cache:
-          key: wallhaus-app-v1-{{ .Branch }}-{{ checksum "yarn.lock" }}
+          key: nuxt-template-v1-{{ .Branch }}-{{ checksum "yarn.lock" }}
           paths:
             - ~/workspace/node_modules
             - ~/.cache/yarn/
@@ -41,14 +41,14 @@ jobs:
             echo "Yarn v$(yarn --version)"
       - restore_cache:
           keys:
-            - wallhaus-app-v1-{{ .Branch }}-{{ checksum "yarn.lock" }}
-            - wallhaus-app-v1-{{ .Branch }}-
-            - wallhaus-app-v1-
+            - nuxt-template-v1-{{ .Branch }}-{{ checksum "yarn.lock" }}
+            - nuxt-template-v1-{{ .Branch }}-
+            - nuxt-template-v1-
       - run:
           name: Install dependencies
           command: yarn install
       - save_cache:
-          key: wallhaus-app-v1-{{ .Branch }}-{{ checksum "yarn.lock" }}
+          key: nuxt-template-v1-{{ .Branch }}-{{ checksum "yarn.lock" }}
           paths:
             - ~/workspace/node_modules
             - ~/.cache/yarn/
@@ -75,14 +75,14 @@ jobs:
             echo "Yarn v$(yarn --version)"
       - restore_cache:
           keys:
-            - wallhaus-app-v1-{{ .Branch }}-{{ checksum "yarn.lock" }}
-            - wallhaus-app-v1-{{ .Branch }}-
-            - wallhaus-app-v1-
+            - nuxt-template-v1-{{ .Branch }}-{{ checksum "yarn.lock" }}
+            - nuxt-template-v1-{{ .Branch }}-
+            - nuxt-template-v1-
       - run:
           name: Install dependencies
           command: yarn install
       - save_cache:
-          key: wallhaus-app-v1-{{ .Branch }}-{{ checksum "yarn.lock" }}
+          key: nuxt-template-v1-{{ .Branch }}-{{ checksum "yarn.lock" }}
           paths:
             - ~/workspace/node_modules
             - ~/.cache/yarn/
@@ -106,14 +106,14 @@ jobs:
             echo "Yarn v$(yarn --version)"
       - restore_cache:
           keys:
-            - wallhaus-app-v1-{{ .Branch }}-{{ checksum "yarn.lock" }}
-            - wallhaus-app-v1-{{ .Branch }}-
-            - wallhaus-app-v1-
+            - nuxt-template-v1-{{ .Branch }}-{{ checksum "yarn.lock" }}
+            - nuxt-template-v1-{{ .Branch }}-
+            - nuxt-template-v1-
       - run:
           name: Install dependencies
           command: yarn install
       - save_cache:
-          key: wallhaus-app-v1-{{ .Branch }}-{{ checksum "yarn.lock" }}
+          key: nuxt-template-v1-{{ .Branch }}-{{ checksum "yarn.lock" }}
           paths:
             - ~/workspace/node_modules
             - ~/.cache/yarn/
