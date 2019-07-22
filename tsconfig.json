@@ -1,0 +1,47 @@
+{
+  "include": [
+    "**/*.ts",
+    "**/*.vue",
+    "stories/index.js", "stories/components/atoms/button/ButtonRound.story.ts"
+  ],
+  "exclude": [
+    "node_modules"
+  ],
+  "compilerOptions": {
+    "baseUrl": ".",
+    "target": "esnext",
+    "types": [
+      "@types/node",
+      "@types/jest",
+      "@nuxt/vue-app"
+    ],
+    "experimentalDecorators": true,
+    "paths": {
+      "@/*": [
+        "./app/*"
+      ],
+      "~/*": [
+        "./*"
+      ]
+    },
+    "module": "esnext",
+    "moduleResolution": "node",
+    "lib": [
+      "esnext",
+      "esnext.asynciterable",
+      "dom",
+      "es5",
+      "es6"
+    ],
+    "esModuleInterop": true,
+    "allowJs": true,
+    "sourceMap": true,
+    "strict": true,
+    "noImplicitAny": false,
+    "noEmit": true,
+    "resolveJsonModule": true,
+    "allowSyntheticDefaultImports": false,
+    "strictNullChecks": true,
+    "noUnusedParameters": true
+  }
+}

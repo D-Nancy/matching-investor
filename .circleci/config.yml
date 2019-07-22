@@ -1,0 +1,134 @@
+version: 2
+jobs:
+  lint:
+    docker:
+      - image: circleci/node:12.6.0
+    working_directory: ~/app
+    steps:
+      - checkout
+      - run:
+          name: System information
+          command: |
+            echo "Node $(node -v)"
+            echo "Yarn v$(yarn --version)"
+      - restore_cache:
+          keys:
+            - wallhaus-app-v1-{{ .Branch }}-{{ checksum "yarn.lock" }}
+            - wallhaus-app-v1-{{ .Branch }}-
+            - wallhaus-app-v1-
+      - run:
+          name: Install dependencies
+          command: yarn install
+      - save_cache:
+          key: wallhaus-app-v1-{{ .Branch }}-{{ checksum "yarn.lock" }}
+          paths:
+            - ~/workspace/node_modules
+            - ~/.cache/yarn/
+      - run:
+          name: Lint
+          command: yarn lint
+
+  build:
+    docker:
+      - image: circleci/node:12.6.0
+    working_directory: ~/app
+    steps:
+      - checkout
+      - run:
+          name: System information
+          command: |
+            echo "Node $(node -v)"
+            echo "Yarn v$(yarn --version)"
+      - restore_cache:
+          keys:
+            - wallhaus-app-v1-{{ .Branch }}-{{ checksum "yarn.lock" }}
+            - wallhaus-app-v1-{{ .Branch }}-
+            - wallhaus-app-v1-
+      - run:
+          name: Install dependencies
+          command: yarn install
+      - save_cache:
+          key: wallhaus-app-v1-{{ .Branch }}-{{ checksum "yarn.lock" }}
+          paths:
+            - ~/workspace/node_modules
+            - ~/.cache/yarn/
+      - run:
+          name: Build
+          command: yarn build
+      - run:
+          name: Generate
+          command: yarn generate
+      - store_artifacts:
+          path: ./dist
+          destination: ~/nuxt
+
+  test:
+    docker:
+      - image: circleci/node:12.6.0
+    working_directory: ~/app
+    steps:
+      - checkout
+      - run:
+          name: System information
+          command: |
+            echo "Node $(node -v)"
+            echo "Yarn v$(yarn --version)"
+      - restore_cache:
+          keys:
+            - wallhaus-app-v1-{{ .Branch }}-{{ checksum "yarn.lock" }}
+            - wallhaus-app-v1-{{ .Branch }}-
+            - wallhaus-app-v1-
+      - run:
+          name: Install dependencies
+          command: yarn install
+      - save_cache:
+          key: wallhaus-app-v1-{{ .Branch }}-{{ checksum "yarn.lock" }}
+          paths:
+            - ~/workspace/node_modules
+            - ~/.cache/yarn/
+      - run:
+          name: Test
+          command: yarn test
+      - store_artifacts:
+          path: ./coverage/lcov-report
+          destination: ~/coverage
+
+  storybook:
+    docker:
+      - image: circleci/node:12.6.0
+    working_directory: ~/app
+    steps:
+      - checkout
+      - run:
+          name: System information
+          command: |
+            echo "Node $(node -v)"
+            echo "Yarn v$(yarn --version)"
+      - restore_cache:
+          keys:
+            - wallhaus-app-v1-{{ .Branch }}-{{ checksum "yarn.lock" }}
+            - wallhaus-app-v1-{{ .Branch }}-
+            - wallhaus-app-v1-
+      - run:
+          name: Install dependencies
+          command: yarn install
+      - save_cache:
+          key: wallhaus-app-v1-{{ .Branch }}-{{ checksum "yarn.lock" }}
+          paths:
+            - ~/workspace/node_modules
+            - ~/.cache/yarn/
+      - run:
+          name: Generate Storybook static files
+          command: yarn build:storybook
+      - store_artifacts:
+          path: ./.storybook-dist
+          destination: ~/storybook
+
+workflows:
+  version: 2
+  build:
+    jobs:
+      - lint
+      - build
+      - test
+      - storybook
